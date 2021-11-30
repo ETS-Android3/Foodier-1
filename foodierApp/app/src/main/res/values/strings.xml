@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Foodier</string>
+<!--    nav graph labels -->
+    <string name="home_fragment_label">home_fragment_label</string>
+    <string name="detail_fragment_label">detail_fragment_label</string>
+    <string name="bookmark_fragment_label">bookmark_fragment_label</string>
 </resources>
