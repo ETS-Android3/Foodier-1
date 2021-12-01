@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import edu.uw.foodier.databinding.HomePageBinding
-import edu.uw.foodier.databinding.HomePageBindingImpl
 
 class homePage : Fragment() {
     private var _binding: HomePageBinding? = null
