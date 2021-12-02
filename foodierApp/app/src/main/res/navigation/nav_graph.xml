@@ -24,17 +24,6 @@
 
         <action
             android:id="@+id/action_details_to_bookmark"
-            app:destination="@id/bookmarkPage" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/bookmarkPage"
-        android:name="edu.uw.foodier.bookmarkPage"
-        android:label="@string/bookmark_fragment_label"
-        tools:layout="@layout/bookmark_page">
-
-        <action
-            android:id="@+id/action_bookmark_to_main"
             app:destination="@id/homePage" />
     </fragment>
 
