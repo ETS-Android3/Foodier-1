@@ -61,8 +61,11 @@ class homePage : Fragment(), CardStackListener {
         }
     }
 
+    private var swipedDirection = "right"
     override fun onCardDisappeared(view: View?, position: Int) {
-
+        if (swipedDirection == "right") {
+            Log.d("HOMEPAGE", "The number is $position")
+        }
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
@@ -73,10 +76,12 @@ class homePage : Fragment(), CardStackListener {
         if (direction == Direction.Left) {
             Log.d("SwIPED DIRECTION", "left")
             // dislike
+            swipedDirection = "left"
             // don't do anything
         } else if (direction == Direction.Right){
             Log.d("SwIPED DIRECTION", "right")
             // like
+            swipedDirection = "right"
             // add to database
         }
     }
