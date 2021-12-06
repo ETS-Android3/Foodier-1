@@ -5,4 +5,4 @@ class FoodItem (
     val food_image: String,
     val restaurant: String,
     val address : String
-) // : Parcelable
+)

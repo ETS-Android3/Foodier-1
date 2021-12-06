@@ -6,19 +6,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".homePage"
-    android:background="@color/teal_200">
+        android:background="@color/teal_200">
+
+        <com.yuyakaido.android.cardstackview.CardStackView
+            android:id="@+id/stack_view"
+            android:layout_width="380dp"
+            android:layout_height="404dp"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintBottom_toTopOf="@id/homeTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/homeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/homeButton"
-            app:layout_constraintStart_toStartOf="parent"
             android:textStyle="bold"
             android:textSize="20dp"
             android:padding="5dp"
-            android:text="home page"/>
+            android:text="home page"
+            app:layout_constraintBottom_toTopOf="@id/homeButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <Button
             android:id="@+id/homeButton"
