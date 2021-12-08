@@ -4,4 +4,7 @@
     <string name="home_fragment_label">home_fragment_label</string>
     <string name="detail_fragment_label">detail_fragment_label</string>
     <string name="bookmark_fragment_label">bookmark_fragment_label</string>
+    <string name="image_of_a_movie">image of a movie</string>
+    <string name="movie_image">movie image</string>
+    <string name="detail_page">detail page</string>
 </resources>

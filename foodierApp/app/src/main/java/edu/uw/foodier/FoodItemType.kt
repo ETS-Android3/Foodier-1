@@ -2,6 +2,7 @@ package edu.uw.foodier
 
 import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 class FoodItemType() : Parcelable {
     var itemName : String = "Default"

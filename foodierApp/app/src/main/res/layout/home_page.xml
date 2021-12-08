@@ -34,9 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="Iterating through a list of potential food items from restaurants.
-             The display will include a swiping of a card view. If you “like” the item, swipe right.
-              If you don’t, swipe left. "
+            android:text="view details of item "
             android:layout_margin="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
