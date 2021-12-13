@@ -36,7 +36,6 @@ class detailPage : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("in create view", "in ncreate view")
         val rootView = inflater.inflate(R.layout.detail_page, container, false)
         val img: ImageView = rootView.findViewById<ImageView>(R.id.img)
         val title: TextView = rootView.findViewById(R.id.detailTitle)
