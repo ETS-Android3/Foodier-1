@@ -10,14 +10,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import edu.uw.foodier.databinding.DetailPageBinding
+import edu.uw.foodier.model.BusinessRepo
 import kotlinx.android.synthetic.main.detail_page.view.*
 
 class detailPage : Fragment() {
    // private var _binding: DetailPageBinding? = null
    // private val binding get() = _binding!!
     private lateinit var selectedFood: FoodItemType
+    private var businessRepo: BusinessRepo = BusinessRepo.instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,14 +45,27 @@ class detailPage : Fragment() {
         val address : TextView = rootView.findViewById(R.id.address)
         val restaurant : TextView = rootView.findViewById(R.id.restaurant_name)
 
+
         title.text = selectedFood.itemName
         address.text = selectedFood.address
         restaurant.text = selectedFood.restaurant
         Glide.with(this).load(selectedFood.food_image).into(img)
 
+        val recycler = rootView.findViewById<RecyclerView>(R.id.listView)
+        recycler.layoutManager = LinearLayoutManager(activity)
+        //val hiWorld = rootView.findViewById<RecyclerView>(R.id.hiWorld)
+
+        val x = businessRepo.search(selectedFood.itemName).subscribe { list, _ ->
+                recycler.adapter = BusinessSearchAdapter(list.businesses)
+        }
+
+        Log.e("bus",x.toString())
         rootView.detailButton.setOnClickListener {
             findNavController().navigate(R.id.action_details_to_bookmark)
         }
+        // might need this
+        //viewModel.movieData.observe(viewLifecycleOwner, movieObserver)
+        //        adapter = MovieAdapter(findNavController(), viewModel.movieData)
 
         return rootView
     }
