@@ -4,21 +4,33 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import edu.uw.foodier.databinding.BookmarkActivityBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+//import edu.uw.foodier.databinding.BookmarkActivityBinding
+import kotlinx.android.synthetic.main.bookmark_activity.*
 
 class BookmarkActivity : AppCompatActivity() {
-    private lateinit var binding: BookmarkActivityBinding
+    //private lateinit var binding: BookmarkActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = BookmarkActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        //binding = BookmarkActivityBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
+        setContentView(R.layout.bookmark_activity)
 
-        binding.bookmarkText.setText("Hello second activity")
+        val allElectionResults: MutableList<Int> = listOf(1,2,3,4,5,6,7).toMutableList()
 
-        binding.button2.setOnClickListener { view ->
+        val bookmarkAdapter = BookmarkAdapter(allElectionResults)
+
+        recycler_list.setHasFixedSize(true)
+        recycler_list.adapter = bookmarkAdapter
+        recycler_list.layoutManager = LinearLayoutManager(this)
+
+        bookmarkText.setText("Bookmarked Restaurants")
+
+        bookmarkToHomeBtn.setOnClickListener { view ->
             // goes to second activity
             val goToMainActivity = Intent(this, MainActivity::class.java)
 
@@ -28,6 +40,10 @@ class BookmarkActivity : AppCompatActivity() {
                 Log.e("errorInMain", e.toString())
             }
         }
-    }
 
+        bookmarkAdapter.itemClickListener = { blueVoteNum, redVoteNum ->
+            Toast.makeText(this, "Blue Votes: $blueVoteNum , Red Votes: $redVoteNum", Toast.LENGTH_LONG)
+                .show()
+        }
+    }
 }
