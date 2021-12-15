@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/hiWorld"
-        android:layout_width="wrap_content"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img"
         android:textSize="20sp"
@@ -76,7 +76,7 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="55dp"
         android:layout_alignTop="@+id/detailButton"
         android:layout_marginStart="300dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
