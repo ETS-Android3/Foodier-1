@@ -6,12 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homePage">
+    tools:context=".homePage"
+    android:layout_marginTop="20dp">
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/stack_view"
         android:layout_width="450dp"
-        android:layout_height="380dp"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

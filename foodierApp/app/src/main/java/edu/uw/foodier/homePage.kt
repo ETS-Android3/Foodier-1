@@ -55,7 +55,6 @@ class homePage : Fragment(), CardStackListener {
         dataSet = homePageModel.getFoodItems()
         adapter.updateData(dataSet);
 
-
         layoutManager = CardStackLayoutManager(context, this).apply {
             setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
             setOverlayInterpolator(LinearInterpolator())
@@ -69,9 +68,9 @@ class homePage : Fragment(), CardStackListener {
             }
         }
 
+        // when the food item updates with distance, update the adapter's dataset
         homePageModel.observeFoodItemUpdate().observe(viewLifecycleOwner, Observer {
             adapter.updateDistance(it)
-            Log.d("HOMEPAGE","updating here!!")
         })
     }
 

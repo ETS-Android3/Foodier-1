@@ -1,8 +1,8 @@
 package edu.uw.foodier
 // This file is for the homePage created by Lauren Ng
 // specifically for the card functionality and populating it with content
+// creating navigation to pass the foodItem object to details
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import edu.uw.foodier.viewmodels.homePageViewModel
 
-class FoodListAdapter ( val mainViewModel: homePageViewModel): RecyclerView.Adapter<FoodListAdapter.ProfileViewHolder>() {
+class FoodListAdapter (private val mainViewModel: homePageViewModel): RecyclerView.Adapter<FoodListAdapter.ProfileViewHolder>() {
     private var foodList: List<FoodItem>? = null
 
     // when the viewHolder is created, we inflate the view and return with the view itself
@@ -32,7 +32,7 @@ class FoodListAdapter ( val mainViewModel: homePageViewModel): RecyclerView.Adap
         this.notifyDataSetChanged()
     }
 
-    //
+    // updating the object's distance calculation
     fun updateDistance(item: FoodItem) {
         foodList?.get(item.index)?.timeDistance = item.timeDistance
         this.notifyItemChanged(item.index)
@@ -68,15 +68,12 @@ class FoodListAdapter ( val mainViewModel: homePageViewModel): RecyclerView.Adap
         private val distanceText: TextView = view.findViewById(R.id.distanceAway)
 
         fun bind(data: FoodItem) { // want to bind with song object probably
-            Log.d("BINDER FOOD ADAPTER", "this is distance: ${data.timeDistance}")
             foodName.text = data.food_name
             restaurantName.text = data.restaurant
             distanceText.text = data.timeDistance
 
-            if (data.food_image != null) {
-                Glide.with(this.itemView).load(data.food_image).into(image)
-                image.contentDescription = "${data.food_name} of the food item from ${data.restaurant}"
-            }
+            Glide.with(this.itemView).load(data.food_image).into(image)
+            image.contentDescription = "${data.food_name} of the food item from ${data.restaurant}"
         }
 
     }

@@ -25,14 +25,13 @@
                 android:layout_alignParentTop="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
-                android:contentDescription="Food item Description"
+                android:contentDescription="@string/imageDescription"
                 app:srcCompat="@drawable/common_google_signin_btn_icon_dark"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
                 >
 
                 <LinearLayout
