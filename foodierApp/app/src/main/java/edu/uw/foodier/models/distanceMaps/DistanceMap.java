@@ -1,6 +1,6 @@
 
 package edu.uw.foodier.models.distanceMaps;
-
+// Created by Lauren for the googleMapsAPI results
 import java.util.List;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;

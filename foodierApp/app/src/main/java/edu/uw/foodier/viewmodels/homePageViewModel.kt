@@ -2,6 +2,8 @@ package edu.uw.foodier.viewmodels
 // This file is for the homePage created by Lauren Ng
 import android.location.Location
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import edu.uw.foodier.FoodItem
 import edu.uw.foodier.api.GoogleMapAPI
@@ -12,17 +14,17 @@ import retrofit2.Response
 
 class homePageViewModel : ViewModel(){
 
-    val LiveFoodItemList: List<FoodItem> = listOf<FoodItem>(FoodItem("bimbimbap","https://s3-media0.fl.yelpcdn.com/bphoto/glQT58yaz5suBRV1nvku6w/o.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
-        FoodItem("Seafood Pancake","https://st.depositphotos.com/2869437/3739/i/950/depositphotos_37392643-stock-photo-close-up-of-pug.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
-        FoodItem("tteokbokki","https://solidstarts.com/wp-content/uploads/Potato-for-Babies-scaled.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
-        FoodItem("Tofu soup","https://s3-media0.fl.yelpcdn.com/bphoto/NGG6-yJADbnJTBbvtwRczw/o.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
-        FoodItem("Lamb Gyro","https://s3-media0.fl.yelpcdn.com/bphoto/8RDWMYK3OfBH7B4NNgte5w/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105"),
-        FoodItem("Aladdin Fries","https://s3-media0.fl.yelpcdn.com/bphoto/W4ZUm8JTnEVjUortFkHSHA/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105"),
-        FoodItem("Gyro Platter Special","https://s3-media0.fl.yelpcdn.com/bphoto/1STJHfvgQjHBzCYn6_Ay0A/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105"),
-        FoodItem("Spicy Pork Bulgogi Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/y7gK7T0-PCaQjzqa1KFXjA/o.jpg","Bugis","4142 Brooklyn Ave NE Seattle, WA 98105"),
-        FoodItem("Mapo Tofu Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/WZc19NPRdmbKVBIzPbg7KA/o.jpg","Bugis","4139 University Way NE Seattle, WA 98105"),
-        FoodItem("Chicken and Waffles","https://s3-media0.fl.yelpcdn.com/bphoto/r6z7hR8ax3hMO6Xid1oQ1A/o.jpg","Bugis","4139 University Way NE Seattle, WA 98105"),
-        FoodItem("Chicken Vindaloo","https://twosleevers.com/wp-content/uploads/2017/06/TS-Chicken-Vindaloo-Wide.jpg","Chili's South Indian Cuisine","4220 University Way NE Seattle, WA 98105")
+    val LiveFoodItemList: List<FoodItem> = listOf<FoodItem>(FoodItem("bimbimbap","https://s3-media0.fl.yelpcdn.com/bphoto/glQT58yaz5suBRV1nvku6w/o.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105",0),
+        FoodItem("Seafood Pancake","https://st.depositphotos.com/2869437/3739/i/950/depositphotos_37392643-stock-photo-close-up-of-pug.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105",1),
+        FoodItem("tteokbokki","https://solidstarts.com/wp-content/uploads/Potato-for-Babies-scaled.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105",2),
+        FoodItem("Tofu soup","https://s3-media0.fl.yelpcdn.com/bphoto/NGG6-yJADbnJTBbvtwRczw/o.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105",3),
+        FoodItem("Lamb Gyro","https://s3-media0.fl.yelpcdn.com/bphoto/8RDWMYK3OfBH7B4NNgte5w/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105",4),
+        FoodItem("Aladdin Fries","https://s3-media0.fl.yelpcdn.com/bphoto/W4ZUm8JTnEVjUortFkHSHA/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105",5),
+        FoodItem("Gyro Platter Special","https://s3-media0.fl.yelpcdn.com/bphoto/1STJHfvgQjHBzCYn6_Ay0A/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105",6),
+        FoodItem("Spicy Pork Bulgogi Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/y7gK7T0-PCaQjzqa1KFXjA/o.jpg","Bugis","4142 Brooklyn Ave NE Seattle, WA 98105",7),
+        FoodItem("Mapo Tofu Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/WZc19NPRdmbKVBIzPbg7KA/o.jpg","Bugis","4139 University Way NE Seattle, WA 98105",8),
+        FoodItem("Chicken and Waffles","https://s3-media0.fl.yelpcdn.com/bphoto/r6z7hR8ax3hMO6Xid1oQ1A/o.jpg","Bugis","4139 University Way NE Seattle, WA 98105",9),
+        FoodItem("Chicken Vindaloo","https://twosleevers.com/wp-content/uploads/2017/06/TS-Chicken-Vindaloo-Wide.jpg","Chili's South Indian Cuisine","4220 University Way NE Seattle, WA 98105",10)
     )
 
     private var currLocation: String = "Seattle,WA"
@@ -36,8 +38,17 @@ class homePageViewModel : ViewModel(){
         currLocation = "${newLoc!!.latitude},${newLoc!!.longitude}"
     }
 
-    fun getDistanceObject(rawObj: FoodItem): FoodItem {
+    val liveFoodObject : MutableLiveData<FoodItem> = MutableLiveData()
+
+    fun observeFoodItemUpdate() : LiveData<FoodItem> {
+        return liveFoodObject
+    }
+
+    fun getDistanceObject(rawObj: FoodItem) {
         Log.d("View model origin location", currLocation)
+//        val newObject = FoodItem(
+//            rawObj.food_name, rawObj.food_image, rawObj.address
+//        )
         GoogleMapAPI.retrofitService.getDirections(
             "AIzaSyANPyWYgrWTJRaUfd6c6oS-QdE2226dHMo",
             currLocation,
@@ -49,7 +60,9 @@ class homePageViewModel : ViewModel(){
                     response.body()?.routes?.get(0)?.legs?.get(0)?.duration?.text
                 if (timeDistance != null) {
                     Log.d("VIEW MODEL", "fetched data is ${timeDistance}")
+                    // replace rawobj later
                     rawObj.timeDistance = timeDistance
+                    liveFoodObject.postValue(rawObj)
                 }
             }
 
@@ -61,7 +74,5 @@ class homePageViewModel : ViewModel(){
                 }
             }
         })
-
-        return rawObj
     }
 }

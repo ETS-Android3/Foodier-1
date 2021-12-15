@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 // setting up the interface that describes the function and api url that is used in the mainPage
 interface GoogleMapsAPIService {
-    @GET("directions/json")
+    @GET("maps/api/directions/json")
     fun getDirections(
         @Query("key") apiKey: String?,
         @Query("origin") origin: String?,
@@ -21,7 +21,7 @@ interface GoogleMapsAPIService {
 }
 
 // URL of the api
-private const val BASE_URL = "https://maps.googleapis.com/maps/api/"
+private const val BASE_URL = "https://maps.googleapis.com/"
 
 // creating the retrofit handler to run the API
 private val retrofit = Retrofit.Builder()
