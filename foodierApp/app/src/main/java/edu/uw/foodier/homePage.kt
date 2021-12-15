@@ -140,8 +140,13 @@ class homePage : Fragment(), CardStackListener {
 
         // doInBackground methods runs on a worker thread
         protected override fun doInBackground(vararg objs: Void?): Boolean? {
-            activityReference.get()?.dao?.insert(food)
-            return true
+            //activityReference.get()?.dao?.deleteAllFoods()
+            if (activityReference.get()?.dao?.getAllFoodItems()?.contains(food) == true) {
+               return false
+            } else {
+                activityReference.get()?.dao?.insert(food)
+                return true
+            }
         }
 
 //        // onPostExecute runs on main thread

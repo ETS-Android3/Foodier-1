@@ -3,6 +3,7 @@ package edu.uw.foodier
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import androidx.room.*
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -35,9 +36,9 @@ class BookmarkActivity : AppCompatActivity() {
 //
 //        bookmarkAdapter = BookmarkAdapter(allElectionResults)
 
-//        recycler_list.setHasFixedSize(true)
-//        recycler_list.adapter = bookmarkAdapter
-//        recycler_list.layoutManager = LinearLayoutManager(this)
+    //    recycler_list.setHasFixedSize(true)
+    //    recycler_list.adapter = bookmarkAdapter
+  //      recycler_list.layoutManager = LinearLayoutManager(this)
 
         bookmarkText.setText("Bookmarked Restaurants")
 
@@ -52,10 +53,18 @@ class BookmarkActivity : AppCompatActivity() {
             }
         }
 
+        dao = FoodItemDatabase.getInstance(this).foodItemDao()
+        foods =  dao?.getAllFoodItems()
+        Log.e("foods", foods.get(0).food_name)
+
+        bookmarkAdapter = BookmarkAdapter(foods as MutableList<FoodItem>)
         bookmarkAdapter.itemClickListener = { foodDetails ->
             Toast.makeText(this, "more info about food $foodDetails", Toast.LENGTH_LONG)
                 .show()
         }
+        recycler_list.setHasFixedSize(true)
+        recycler_list.adapter = bookmarkAdapter
+        recycler_list.layoutManager = LinearLayoutManager(this)
     }
 
     private fun displayList() {

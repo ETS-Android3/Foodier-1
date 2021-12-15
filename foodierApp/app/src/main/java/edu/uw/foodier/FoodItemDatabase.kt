@@ -23,6 +23,7 @@ abstract class FoodItemDatabase : RoomDatabase() {
                     "note_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
+                    .allowMainThreadQueries()
                     .build()
 
             return instance!!
