@@ -11,3 +11,20 @@ import com.facebook.drawee.view.SimpleDraweeView
 fun loadImage(view: SimpleDraweeView, url: String) {
     view.setImageURI(url)
 }
+
+// US
+// making sure the UI looks normal.
+
+// JADE
+// fix landscape view - details - jade
+// make sure text view shows up for sim restos - i can work on this myself
+
+// LAUREN
+// GPS - Lauren
+// Clean up code - Lauren
+// Persisting the card after looking at the detail - lauren
+// fix landscape view - main - lauren
+
+// SHRUTI
+// recycler view - shruti does it herself
+// room db has data added to it

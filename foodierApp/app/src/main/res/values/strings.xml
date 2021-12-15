@@ -9,4 +9,5 @@
     <string name="detail_page">detail page</string>
     <string name="to_bookmark_activity">to bookmark activity</string>
     <string name="empty_result">No results for \"%1$s\"</string>
+    <string name="result_found">Other Restaurants that serve \"%1$s\"</string>
 </resources>

@@ -66,6 +66,7 @@ class detailPage : Fragment() {
                     hiWorld.text = getString(R.string.empty_result, selectedFood.itemName)
                 }
                 else {
+                    hiWorld.text = getString(R.string.result_found, selectedFood.itemName)
                     recycler.adapter = BusinessSearchAdapter(list.businesses)
                 }
         }
