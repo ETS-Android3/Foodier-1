@@ -15,8 +15,8 @@ interface FoodItemDao {
     fun delete(fooditem: FoodItem)
 
     @Query("delete from bookmarked_food_items")
-    fun deleteAllNotes()
+    fun deleteAllFoods()
 
     @Query("select * from bookmarked_food_items")
-    fun getAllFoodItems(): LiveData<List<FoodItem>>
+    fun getAllFoodItems(): List<FoodItem>
 }

@@ -1,35 +1,35 @@
-//package edu.uw.foodier
-//
-//import android.app.Application
-//import androidx.lifecycle.AndroidViewModel
-//import androidx.lifecycle.MutableLiveData
-//import androidx.lifecycle.Transformations
-//import androidx.lifecycle.viewModelScope
-//import kotlinx.coroutines.CoroutineScope
-//import kotlinx.coroutines.Dispatchers
-//import kotlinx.coroutines.Job
-//import kotlinx.coroutines.launch
-//import kotlinx.coroutines.withContext
-//
-///**
-// * ViewModel for SleepTrackerFragment.
-// */
-//class SleepTrackerViewModel(
-//    val database: FoodItemDao,
-//    application: Application) : AndroidViewModel(application) {
-//
-//    private val nights = database.getAllFoodItems()
-//
-////    val nightsString = Transformations.map(nights) { nights ->
-////        formatNights(nights, application.resources)
-////    }
-//
-//    private var tonight = MutableLiveData<FoodItem?>()
-//
-//    init {
-//        initializeTonight()
+package edu.uw.foodier
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+/**
+ * ViewModel for SleepTrackerFragment.
+ */
+class FoodItemViewModelDB(
+    val database: FoodItemDao,
+    application: Application) : AndroidViewModel(application) {
+
+    private val foods = database.getAllFoodItems()
+
+//    val nightsString = Transformations.map(nights) { nights ->
+//        formatNights(nights, application.resources)
 //    }
-//
+
+//    private var tonight = MutableLiveData<FoodItem?>()
+
+    init {
+//        initializeTonight()
+    }
+
 //    private fun initializeTonight() {
 //        viewModelScope.launch {
 //            tonight.value = getFoodFromDatabase()
@@ -43,7 +43,7 @@
 //        }
 //        return night
 //    }
-//
+
 //    fun onStartTracking() {
 //        viewModelScope.launch {
 //            val newNight = SleepNight()
@@ -51,11 +51,11 @@
 //            tonight.value = getTonightFromDatabase()
 //        }
 //    }
-//
-//    private suspend fun insert(night: SleepNight) {
-//        database.insert(night)
-//    }
-//
+
+    private fun insert(foodItem: FoodItem) {
+        database.insert(foodItem)
+    }
+
 //    fun onStopTracking() {
 //        viewModelScope.launch {
 //            val oldNight = tonight.value ?: return@launch
@@ -63,19 +63,18 @@
 //            update(oldNight)
 //        }
 //    }
-//
-//    private suspend fun update(night: SleepNight) {
-//        database.update(night)
-//    }
-//
-//    fun onClear() {
-//        viewModelScope.launch {
-//            clear()
-//            tonight.value = null
-//        }
-//    }
-//
-//    suspend fun clear() {
-//        database.clear()
-//    }
-//}
+
+    private suspend fun update(foodItem: FoodItem) {
+        database.update(foodItem)
+    }
+
+    fun onClear() {
+        viewModelScope.launch {
+            clear()
+        }
+    }
+
+    suspend fun clear() {
+        database.deleteAllFoods()
+    }
+}

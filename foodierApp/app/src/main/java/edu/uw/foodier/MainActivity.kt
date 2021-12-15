@@ -1,46 +1,43 @@
 package edu.uw.foodier
 
 import android.Manifest
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
-import androidx.core.app.ActivityCompat.requestPermissions
-
-import android.widget.Toast
-
-import com.google.android.gms.tasks.Task
-
-import androidx.annotation.NonNull
-
-import com.google.android.gms.tasks.OnCompleteListener
-
-import androidx.core.location.LocationManagerCompat.isLocationEnabled
-
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Context
-import androidx.core.location.LocationManagerCompat
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
-
-import androidx.core.app.ActivityCompat
-
+import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
+import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.requestPermissions
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.gms.location.*
+import kotlinx.android.synthetic.main.activity_main.*
+
+import androidx.lifecycle.ViewModelProviders
 
 
 class MainActivity : AppCompatActivity() {
     var mFusedLocationClient: FusedLocationProviderClient? = null
     var pointView : TextView? = null
+//    private var fm : FoodItemViewModelDB ?= null
+    private lateinit var dao: FoodItemDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        dao = FoodItemDatabase.getInstance(this).foodItemDao()
+
+//        fm = ViewModelProviders.of(this)[FoodItemViewModelDB::class.java]
+//
         button.setOnClickListener { view ->
             // goes to second activity
             val goToSecondActivity = Intent(this, BookmarkActivity::class.java)

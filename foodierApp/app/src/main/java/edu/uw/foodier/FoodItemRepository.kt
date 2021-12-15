@@ -7,7 +7,7 @@ import edu.uw.foodier.utils.subscribeOnBackground
 class FoodItemRepository(application: Application) {
 
     private var foodItemDao: FoodItemDao
-    private var allFoodItems: LiveData<List<FoodItem>>
+    private var allFoodItems: List<FoodItem>
 
     private val database = FoodItemDatabase.getInstance(application)
 
@@ -36,11 +36,11 @@ class FoodItemRepository(application: Application) {
 
     fun deleteAllNotes() {
         subscribeOnBackground {
-            foodItemDao.deleteAllNotes()
+            foodItemDao.deleteAllFoods()
         }
     }
 
-    fun getAllFoodItems(): LiveData<List<FoodItem>> {
+    fun getAllFoodItems(): List<FoodItem> {
         return allFoodItems
     }
 }

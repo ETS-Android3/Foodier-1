@@ -21,7 +21,7 @@ import kotlin.math.roundToInt
 import kotlinx.android.synthetic.main.recycler_view_row.*
  */
 
-class BookmarkAdapter(private val dataSet: MutableList<Int>) :
+class BookmarkAdapter(private val dataSet: MutableList<FoodItem>) :
     RecyclerView.Adapter<BookmarkAdapter.ViewHolder>() {
 
         var itemClickListener: ((foodName: String) -> Unit)? = null
@@ -48,7 +48,7 @@ class BookmarkAdapter(private val dataSet: MutableList<Int>) :
             // Getting element from names list at this position
             val element = dataSet[position]
             // Updating the text of the txtName with this element
-            viewHolder.textViewFoodName.text = element.toString()
+            viewHolder.textViewFoodName.text = element.food_name
 
             // Adding an OnClickLister to the holder.itemView
             viewHolder.itemView.setOnClickListener {

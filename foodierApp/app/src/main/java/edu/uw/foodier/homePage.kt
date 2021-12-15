@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -20,6 +21,11 @@ import com.yuyakaido.android.cardstackview.SwipeableMethod
 import edu.uw.foodier.databinding.HomePageBinding
 import edu.uw.foodier.viewmodels.homePageViewModel
 import kotlinx.android.synthetic.main.home_page.*
+import kotlinx.coroutines.launch
+import android.os.AsyncTask
+import androidx.core.content.ContentProviderCompat.requireContext
+import java.lang.ref.WeakReference
+
 
 class homePage : Fragment(), CardStackListener {
     private var _binding: HomePageBinding? = null
@@ -30,6 +36,22 @@ class homePage : Fragment(), CardStackListener {
     private lateinit var layoutManager: CardStackLayoutManager
     private lateinit var dataSet : List<FoodItem>
 
+    private var foodItemDb: FoodItemDatabase ?= null
+    private lateinit var dao: FoodItemDao
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Initialize the DAO..
+        dao = FoodItemDatabase.getInstance(requireContext()).foodItemDao()
+    }
+
+//    private fun insertFood(food: FoodItem) {
+//        lifecycleScope.launch {
+//            dao.insert(food)
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,6 +94,8 @@ class homePage : Fragment(), CardStackListener {
             Log.d("HOMEPAGE", "The number is $position and values include ${dataSet[position].food_name}")
             // PASS TO ROOM HERE!!!!
             val likedFoodObject = dataSet[position]
+
+            InsertTask(this@homePage, likedFoodObject).execute()
         }
     }
 
@@ -88,6 +112,7 @@ class homePage : Fragment(), CardStackListener {
             // like
             swipedDirection = "right"
             // add to database
+            //foodItemDatabase.
         }
     }
 
@@ -101,5 +126,35 @@ class homePage : Fragment(), CardStackListener {
 
     override fun onCardRewound() {
 
+    }
+
+    private class InsertTask internal constructor(context: homePage?, food: FoodItem) :
+        AsyncTask<Void?, Void?, Boolean>() {
+        private var activityReference: WeakReference<homePage>
+        private lateinit var food: FoodItem
+
+        fun InsertTask(context: homePage, food: FoodItem) {
+            activityReference = WeakReference(context)
+            this.food = food
+        }
+
+        // doInBackground methods runs on a worker thread
+        protected override fun doInBackground(vararg objs: Void?): Boolean? {
+            activityReference.get()?.dao?.insert(food)
+            return true
+        }
+
+//        // onPostExecute runs on main thread
+//        override fun onPostExecute(bool: Boolean) {
+//            if (bool) {
+//                activityReference.get().setResult(note, 1)
+//            }
+//        }
+
+        // only retain a weak reference to the activity
+        init {
+            activityReference = WeakReference(context)
+            this.food = food
+        }
     }
 }
