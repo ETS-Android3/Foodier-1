@@ -2,7 +2,7 @@
 // to call the Yelp API to find similar restaurants for the
 // given food item, in Washington specifically.
 // We used open source code by Yelp in order to navigate their API.
-package edu.uw.foodier
+package edu.uw.foodier.api
 
 interface Factory<T : Any> {
     var mock: T?
