@@ -1,3 +1,6 @@
+// This file was created by Jade D'Souza for the Detail Page
+// and utilizes the Yelp API to find similar restaurants for the
+// given food item, in Washington specifically.
 package edu.uw.foodier
 
 import android.os.Bundle
@@ -7,18 +10,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import edu.uw.foodier.adapter.BusinessSearchAdapter
 import edu.uw.foodier.model.BusinessRepo
+import kotlinx.android.synthetic.main.detail_page.*
 import kotlinx.android.synthetic.main.detail_page.view.*
 
 class detailPage : Fragment() {
-   // private var _binding: DetailPageBinding? = null
-   // private val binding get() = _binding!!
     private lateinit var selectedFood: FoodItemType
     private var businessRepo: BusinessRepo = BusinessRepo.instance()
 
@@ -53,13 +57,19 @@ class detailPage : Fragment() {
 
         val recycler = rootView.findViewById<RecyclerView>(R.id.listView)
         recycler.layoutManager = LinearLayoutManager(activity)
-        //val hiWorld = rootView.findViewById<RecyclerView>(R.id.hiWorld)
 
-        val x = businessRepo.search(selectedFood.itemName).subscribe { list, _ ->
-                recycler.adapter = BusinessSearchAdapter(list.businesses)
+       businessRepo.search(selectedFood.itemName).subscribe { list, _ ->
+                val hasNoResults = (list?.total ?: 0) == 0
+                hiWorld.isVisible = hasNoResults
+                recycler.isGone = hasNoResults
+                if (hasNoResults) {
+                    hiWorld.text = getString(R.string.empty_result, selectedFood.itemName)
+                }
+                else {
+                    recycler.adapter = BusinessSearchAdapter(list.businesses)
+                }
         }
 
-        Log.e("bus",x.toString())
         rootView.detailButton.setOnClickListener {
             findNavController().navigate(R.id.action_details_to_bookmark)
         }
@@ -67,7 +77,7 @@ class detailPage : Fragment() {
         //viewModel.movieData.observe(viewLifecycleOwner, movieObserver)
         //        adapter = MovieAdapter(findNavController(), viewModel.movieData)
 
-        }
+
         return rootView
     }
 

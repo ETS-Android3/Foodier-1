@@ -1,3 +1,5 @@
+// This file was created by Jade D'Souza, Lauren Ng, Shruti Kompella
+// for our Food Item data.
 package edu.uw.foodier
 
 data class FoodItem(
