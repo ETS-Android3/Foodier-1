@@ -30,12 +30,16 @@ import androidx.core.app.ActivityCompat
 
 import android.os.Looper
 import android.provider.Settings
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import com.google.android.gms.location.*
+import edu.uw.foodier.viewmodels.homePageViewModel
 
 
 class MainActivity : AppCompatActivity() {
     var mFusedLocationClient: FusedLocationProviderClient? = null
-    var pointView : TextView? = null
+    val model : homePageViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,29 +58,22 @@ class MainActivity : AppCompatActivity() {
 //        pointView = findViewById(R.id.textviewActivityFirst);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
         // method to get the location
         getLastLocation();
     }
     @SuppressLint("MissingPermission")
-    private fun getLastLocation() {
+    fun getLastLocation() {
         // check if permissions are given
         if (checkPermissions()) {
 
             // check if location is enabled
             if (isLocationEnabled()) {
-
-                // getting last
-                // location from
-                // FusedLocationClient
-                // object
                 mFusedLocationClient!!.lastLocation.addOnCompleteListener { task ->
                     val location = task.result
                     if (location == null) {
                         requestNewLocationData()
                     } else {
-                        Log.d("Main Activity", location.latitude.toString())
-//                        pointView?.setText(location.latitude.toString() + " lat and " + location.longitude.toString())
+                        model.updateLocation(location)
                     }
                 }
             } else {

@@ -22,17 +22,6 @@ class FoodListAdapter : RecyclerView.Adapter<FoodListAdapter.ProfileViewHolder>(
     // put this data into the view model
     private var foodList: List<FoodItem>? = null
     private val homePageModel : homePageViewModel = homePageViewModel()
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProfileViewHolder(
-////        DataBindingUtil.inflate(
-////            LayoutInflater.from(parent.context),
-////            R.layout.food_item_card,
-////            parent,
-////            false
-////        )
-//
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.food_item_card, parent, false)
-//        return ViewHolder(view)
-//    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.food_item_card, parent, false)
@@ -71,12 +60,13 @@ class FoodListAdapter : RecyclerView.Adapter<FoodListAdapter.ProfileViewHolder>(
         private val image: ImageView = view.findViewById(R.id.foodImage)
         private val foodName: TextView = view.findViewById(R.id.foodHeader)
         private val restaurantName: TextView = view.findViewById(R.id.restaurant_name)
+        private val distanceText: TextView = view.findViewById(R.id.distanceAway)
 
         fun bind(data: FoodItem) { // want to bind with song object probably
             Log.d("BINDER FOOD ADAPTER", "this is distance: ${data.timeDistance}")
             foodName.text = data.food_name
             restaurantName.text = data.restaurant
-            // add other edits like image later
+            distanceText.text = data.timeDistance
 
             if (data.food_image != null) {
                 Log.d("foodListAdapter", data.food_image)

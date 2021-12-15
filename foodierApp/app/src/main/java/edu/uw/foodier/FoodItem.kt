@@ -7,5 +7,5 @@ data class FoodItem(
     val food_image: String,
     val restaurant: String,
     val address: String,
-    var timeDistance: String = "0 minutes"
+    var timeDistance: String = "0 min"
 )

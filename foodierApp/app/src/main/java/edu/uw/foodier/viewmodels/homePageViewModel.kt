@@ -1,8 +1,7 @@
 package edu.uw.foodier.viewmodels
 // This file is for the homePage created by Lauren Ng
+import android.location.Location
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import edu.uw.foodier.FoodItem
 import edu.uw.foodier.api.GoogleMapAPI
@@ -26,31 +25,43 @@ class homePageViewModel : ViewModel(){
         FoodItem("Chicken Vindaloo","https://twosleevers.com/wp-content/uploads/2017/06/TS-Chicken-Vindaloo-Wide.jpg","Chili's South Indian Cuisine","4220 University Way NE Seattle, WA 98105")
     )
 
+    private var currLocation: String = "Seattle,WA"
+
     fun getFoodItems() : List<FoodItem> {
         return LiveFoodItemList
     }
 
-    fun getDistanceObject(rawObj : FoodItem) : FoodItem {
-        val returnObject = rawObj
-        // TODO REPLACE WITH CURRENT LOCATION
-        GoogleMapAPI.retrofitService.getDirections("AIzaSyANPyWYgrWTJRaUfd6c6oS-QdE2226dHMo", "Seattle,WA", rawObj.address).enqueue(object:
+    fun updateLocation(newLoc: Location) {
+        Log.d("viewmodelsss new location", newLoc.latitude.toString())
+        currLocation = "${newLoc!!.latitude},${newLoc!!.longitude}"
+    }
+
+    fun getDistanceObject(rawObj: FoodItem): FoodItem {
+        Log.d("View model origin location", currLocation)
+        GoogleMapAPI.retrofitService.getDirections(
+            "AIzaSyANPyWYgrWTJRaUfd6c6oS-QdE2226dHMo",
+            currLocation,
+            rawObj.address
+        ).enqueue(object :
             Callback<DistanceMap> {
             override fun onResponse(call: Call<DistanceMap>, response: Response<DistanceMap>) {
                 val timeDistance =
                     response.body()?.routes?.get(0)?.legs?.get(0)?.duration?.text
                 if (timeDistance != null) {
-                    returnObject.timeDistance = timeDistance
+                    Log.d("VIEW MODEL", "fetched data is ${timeDistance}")
+                    rawObj.timeDistance = timeDistance
                 }
-                Log.d("VIEW MODEL", "fetched data is ${timeDistance}")
             }
+
             override fun onFailure(call: Call<DistanceMap>, t: Throwable) {
                 Log.d("viewModel", call.toString().toString())
                 t.message?.let { Log.e("viewModel", it) }
-                t.localizedMessage?.let{
-                    Log.e("viewModel", it) }
+                t.localizedMessage?.let {
+                    Log.e("viewModel", it)
+                }
             }
         })
 
-        return returnObject
+        return rawObj
     }
 }

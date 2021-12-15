@@ -1,16 +1,17 @@
 package edu.uw.foodier
 // This file is for the homePage created by Lauren Ng
+// and describes the high level functionality of the home page
+// here, we create the card view and implement the main functionalities
+// also creating the navigation to the bookmark activity
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
