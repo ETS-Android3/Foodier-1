@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.recycler_view_row.*
 class BookmarkAdapter(private val dataSet: MutableList<Int>) :
     RecyclerView.Adapter<BookmarkAdapter.ViewHolder>() {
 
-        var itemClickListener: ((blueVoteNum: String, redVoteNum: String) -> Unit)? = null
+        var itemClickListener: ((foodName: String) -> Unit)? = null
 
         /**
          * Provide a reference to the type of views that you are using
@@ -53,7 +53,7 @@ class BookmarkAdapter(private val dataSet: MutableList<Int>) :
             // Adding an OnClickLister to the holder.itemView
             viewHolder.itemView.setOnClickListener {
                 // Invoking itemClickListener and passing it the position and name
-                itemClickListener?.invoke("stuff", "other stuff")
+                itemClickListener?.invoke("food name")
             }
         }
 

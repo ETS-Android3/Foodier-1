@@ -41,8 +41,8 @@ class BookmarkActivity : AppCompatActivity() {
             }
         }
 
-        bookmarkAdapter.itemClickListener = { blueVoteNum, redVoteNum ->
-            Toast.makeText(this, "Blue Votes: $blueVoteNum , Red Votes: $redVoteNum", Toast.LENGTH_LONG)
+        bookmarkAdapter.itemClickListener = { foodDetails ->
+            Toast.makeText(this, "more info about food $foodDetails", Toast.LENGTH_LONG)
                 .show()
         }
     }
