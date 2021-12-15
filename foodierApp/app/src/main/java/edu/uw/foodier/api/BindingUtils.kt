@@ -12,19 +12,26 @@ fun loadImage(view: SimpleDraweeView, url: String) {
     view.setImageURI(url)
 }
 
-// US
-// making sure the UI looks normal.
+// EVERYONE FINISH UR SLIDE
 
 // JADE
 // fix landscape view - details - jade
-// make sure text view shows up for sim restos - i can work on this myself
 
 // LAUREN
 // Needs to update gps on front end - Lauren
 // Clean up code - Lauren
-// Persisting the card after looking at the detail - lauren
+// Persisting the card after looking at the detail - lauren (last priority)
 // fix landscape view - main - lauren
 
 // SHRUTI
 // recycler view - shruti does it herself
 // room db has data added to it - Shruti does it in Laurens file
+
+/*
+Clean code
+No commented out code
+Variable names should be understandable
+Each method should be documented
+Each class should be documented
+Code should be well formatted
+ */

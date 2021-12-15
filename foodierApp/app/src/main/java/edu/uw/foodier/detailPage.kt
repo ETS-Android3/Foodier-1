@@ -48,11 +48,13 @@ class detailPage : Fragment() {
         val title: TextView = rootView.findViewById(R.id.detailTitle)
         val address : TextView = rootView.findViewById(R.id.address)
         val restaurant : TextView = rootView.findViewById(R.id.restaurant_name)
-
+        val pointView : TextView = rootView.findViewById(R.id.hiWorld);
 
         title.text = selectedFood.itemName
         address.text = selectedFood.address
         restaurant.text = selectedFood.restaurant
+        //pointView.text = "on god";
+        //pointView.setText("test")
         Glide.with(this).load(selectedFood.food_image).into(img)
 
         val recycler = rootView.findViewById<RecyclerView>(R.id.listView)
@@ -60,13 +62,13 @@ class detailPage : Fragment() {
 
        businessRepo.search(selectedFood.itemName).subscribe { list, _ ->
                 val hasNoResults = (list?.total ?: 0) == 0
-                hiWorld.isVisible = hasNoResults
                 recycler.isGone = hasNoResults
                 if (hasNoResults) {
-                    hiWorld.text = getString(R.string.empty_result, selectedFood.itemName)
+                    //hiWorld.text = getString(R.string.empty_result, selectedFood.itemName)
                 }
                 else {
-                    hiWorld.text = getString(R.string.result_found, selectedFood.itemName)
+                    //hiWorld.text = getString(R.string.result_found, selectedFood.itemName)
+                    pointView.setText("Other Restaurants that serve " + selectedFood.itemName)
                     recycler.adapter = BusinessSearchAdapter(list.businesses)
                 }
         }
