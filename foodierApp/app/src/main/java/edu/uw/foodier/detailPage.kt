@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import edu.uw.foodier.model.BusinessRepo
+import kotlinx.android.synthetic.main.detail_page.*
 import kotlinx.android.synthetic.main.detail_page.view.*
 
 class detailPage : Fragment() {
@@ -53,13 +56,19 @@ class detailPage : Fragment() {
 
         val recycler = rootView.findViewById<RecyclerView>(R.id.listView)
         recycler.layoutManager = LinearLayoutManager(activity)
-        //val hiWorld = rootView.findViewById<RecyclerView>(R.id.hiWorld)
 
-        val x = businessRepo.search(selectedFood.itemName).subscribe { list, _ ->
-                recycler.adapter = BusinessSearchAdapter(list.businesses)
+       businessRepo.search(selectedFood.itemName).subscribe { list, _ ->
+                val hasNoResults = (list?.total ?: 0) == 0
+                hiWorld.isVisible = hasNoResults
+                recycler.isGone = hasNoResults
+                if (hasNoResults) {
+                    hiWorld.text = getString(R.string.empty_result, selectedFood.itemName)
+                }
+                else {
+                    recycler.adapter = BusinessSearchAdapter(list.businesses)
+                }
         }
 
-        Log.e("bus",x.toString())
         rootView.detailButton.setOnClickListener {
             findNavController().navigate(R.id.action_details_to_bookmark)
         }
@@ -67,7 +76,7 @@ class detailPage : Fragment() {
         //viewModel.movieData.observe(viewLifecycleOwner, movieObserver)
         //        adapter = MovieAdapter(findNavController(), viewModel.movieData)
 
-        }
+
         return rootView
     }
 
