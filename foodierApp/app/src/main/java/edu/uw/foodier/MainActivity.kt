@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e("errorInMain", e.toString())
             }
         }
-        pointView = findViewById(R.id.textviewActivityFirst);
+//        pointView = findViewById(R.id.textviewActivityFirst);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -75,7 +75,8 @@ class MainActivity : AppCompatActivity() {
                     if (location == null) {
                         requestNewLocationData()
                     } else {
-                        pointView?.setText(location.latitude.toString() + " lat and " + location.longitude.toString())
+                        Log.d("Main Activity", location.latitude.toString())
+//                        pointView?.setText(location.latitude.toString() + " lat and " + location.longitude.toString())
                     }
                 }
             } else {
@@ -113,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation = locationResult.lastLocation
             Log.d("MAIN ACTIVTY", mLastLocation.latitude.toString())
-            pointView?.setText("Latitude: " + mLastLocation.latitude + "latitutude and " + mLastLocation.longitude)
+//            pointView?.setText("Latitude: " + mLastLocation.latitude + "latitutude and " + mLastLocation.longitude)
         }
     }
 

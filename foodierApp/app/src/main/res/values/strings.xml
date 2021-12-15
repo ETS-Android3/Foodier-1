@@ -14,4 +14,6 @@
     <string name="save_icon">Save Icon</string>
     <string name="bookmark">Bookmark</string>
     <string name="back_to_home_page">Back to Home Page!</string>
+    <string name="distance_away">15 min</string>
+    <string name="to_homepage">to homepage</string>
 </resources>
