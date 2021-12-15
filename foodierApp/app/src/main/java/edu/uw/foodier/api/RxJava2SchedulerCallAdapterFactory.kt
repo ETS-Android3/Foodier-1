@@ -23,6 +23,8 @@ class RxJava2SchedulerCallAdapterFactory internal constructor(
     private val observeScheduler: Scheduler = AndroidSchedulers.mainThread()
     private val wrappedFactory: RxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
 
+    // overrides the Java RxJava2CallAdapterFactory to return a call adapter
+    // with our retrofitted Yelp API
     override fun get(
         returnType: Type,
         annotations: Array<Annotation>,
@@ -37,10 +39,15 @@ class RxJava2SchedulerCallAdapterFactory internal constructor(
         private val wrappedAdapter: CallAdapter<R, *>
     ) : CallAdapter<R, Any> {
 
+        // overrides the responseType function with our adapters
+        // response type, or the yelp APIs https response to a
+        // Kotlin object
         override fun responseType(): Type {
             return wrappedAdapter.responseType()
         }
 
+        // observes data received from yelp api through a scheduler that refreshes
+        // the data
         override fun adapt(call: Call<R>): Any {
             val it: Any = wrappedAdapter.adapt(call)
             return when (it) {
