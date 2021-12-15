@@ -53,7 +53,7 @@ class homePage : Fragment(), CardStackListener {
     // will be displayed and creates the scaffolding for actions and animations
     private fun createCardView() {
         dataSet = homePageModel.getFoodItems()
-        adapter.updateData(dataSet);
+        adapter.updateData(dataSet)
 
         layoutManager = CardStackLayoutManager(context, this).apply {
             setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
@@ -93,6 +93,8 @@ class homePage : Fragment(), CardStackListener {
         }
     }
 
+    // the following functions are helper functions for the card view. They aren't necessary for
+    // the functionality in the current project. But the app doesn't run when they aren't implemented
     override fun onCardDragging(direction: Direction?, ratio: Float) {
 //        TODO("Not yet implemented")
     }
