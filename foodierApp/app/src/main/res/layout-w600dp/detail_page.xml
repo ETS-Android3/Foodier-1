@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".detailPage">
 
@@ -52,18 +52,20 @@
 
     <TextView
         android:id="@+id/hiWorld"
-        android:layout_width="wrap_content"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img"
         android:textSize="20sp"
+        android:layout_marginStart="300dp"
+        android:layout_alignTop="@+id/detailButton"
         android:textStyle="bold"
         android:layout_marginTop="5dp"
         android:text="@string/other_restaurants_similar_food" />
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/address"
         android:layout_marginLeft="5dp"
         android:contentDescription="@string/image_of_a_movie"
@@ -74,8 +76,9 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
+        android:layout_marginTop="55dp"
+        android:layout_alignTop="@+id/detailButton"
+        android:layout_marginStart="300dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_below="@+id/hiWorld"
         tools:text="Hello World" />

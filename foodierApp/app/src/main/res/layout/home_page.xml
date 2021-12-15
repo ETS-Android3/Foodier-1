@@ -4,14 +4,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:layout_marginTop="100dp"
         android:layout_height="match_parent"
-        tools:context=".homePage"
-        android:background="@color/teal_200">
+        tools:context=".homePage">
 
         <com.yuyakaido.android.cardstackview.CardStackView
             android:id="@+id/stack_view"
             android:layout_width="380dp"
-            android:layout_height="404dp"
+            android:layout_height="450dp"
             android:layout_centerHorizontal="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -49,8 +49,7 @@ class FoodListAdapter : RecyclerView.Adapter<FoodListAdapter.ProfileViewHolder>(
 
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
         foodList?.let {
-            // TODO GET OBJECT WITH DISTNACE ISN;t WORKING?
-            val realObject = it[position]//homePageModel.getDistanceObject(it[position])
+            val realObject = homePageModel.getDistanceObject(it[position]) //it[position]
             holder.bind(realObject)
 
             // bundling up data to be passed to detail view

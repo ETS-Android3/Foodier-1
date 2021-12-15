@@ -21,6 +21,8 @@ object YelpAPI {
 
     private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
+    // provides authentication to successfully call the Yelp API
+    // and creates our service
     fun <T> create(service: Class<T>): T {
         return Retrofit.Builder()
             .baseUrl("https://api.yelp.com/")

@@ -20,10 +20,10 @@ class homePageViewModel : ViewModel(){
         FoodItem("Lamb Gyro","https://s3-media0.fl.yelpcdn.com/bphoto/8RDWMYK3OfBH7B4NNgte5w/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105"),
         FoodItem("Aladdin Fries","https://s3-media0.fl.yelpcdn.com/bphoto/W4ZUm8JTnEVjUortFkHSHA/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105"),
         FoodItem("Gyro Platter Special","https://s3-media0.fl.yelpcdn.com/bphoto/1STJHfvgQjHBzCYn6_Ay0A/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105"),
-        FoodItem("Spicy Pork Bulogigi Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/y7gK7T0-PCaQjzqa1KFXjA/o.jpg","Bugis","4142 Brooklyn Ave NE Seattle, WA 98105"),
+        FoodItem("Spicy Pork Bulgogi Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/y7gK7T0-PCaQjzqa1KFXjA/o.jpg","Bugis","4142 Brooklyn Ave NE Seattle, WA 98105"),
         FoodItem("Mapo Tofu Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/WZc19NPRdmbKVBIzPbg7KA/o.jpg","Bugis","4139 University Way NE Seattle, WA 98105"),
         FoodItem("Chicken and Waffles","https://s3-media0.fl.yelpcdn.com/bphoto/r6z7hR8ax3hMO6Xid1oQ1A/o.jpg","Bugis","4139 University Way NE Seattle, WA 98105"),
-        FoodItem("Spicy Pork Bulogigi Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/y7gK7T0-PCaQjzqa1KFXjA/o.jpg","Bugis","4142 Brooklyn Ave NE Seattle, WA 98105")
+        FoodItem("Chicken Vindaloo","https://twosleevers.com/wp-content/uploads/2017/06/TS-Chicken-Vindaloo-Wide.jpg","Chili's South Indian Cuisine","4220 University Way NE Seattle, WA 98105")
     )
 
     fun getFoodItems() : List<FoodItem> {

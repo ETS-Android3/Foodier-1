@@ -9,4 +9,14 @@
     <string name="detail_page">detail page</string>
     <string name="to_bookmark_activity">to bookmark activity</string>
     <string name="empty_result">No results for \"%1$s\"</string>
+    <string name="result_found">Other Restaurants that serve \"%1$s\"</string>
+    <string name="potatopotaotpat_activty_main">Activty main</string>
+    <string name="save_icon">Save Icon</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="back_to_home_page">Back to Home Page!</string>
+    <string name="distance_away">15 min</string>
+    <string name="to_homepage">to homepage</string>
+    <string name="restaurant_name">restaurant name</string>
+    <string name="address">address</string>
+    <string name="other_restaurants_similar_food">Other Restaurants Similar Food</string>
 </resources>
