@@ -1,3 +1,6 @@
+// This file was created by Jade D'Souza for the Detail Page
+// and utilizes the Yelp API to find similar restaurants for the
+// given food item, in Washington specifically.
 package edu.uw.foodier
 
 import android.os.Bundle
@@ -11,17 +14,15 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import edu.uw.foodier.adapter.BusinessSearchAdapter
 import edu.uw.foodier.model.BusinessRepo
 import kotlinx.android.synthetic.main.detail_page.*
 import kotlinx.android.synthetic.main.detail_page.view.*
 
 class detailPage : Fragment() {
-   // private var _binding: DetailPageBinding? = null
-   // private val binding get() = _binding!!
     private lateinit var selectedFood: FoodItemType
     private var businessRepo: BusinessRepo = BusinessRepo.instance()
 

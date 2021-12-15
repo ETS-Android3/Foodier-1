@@ -1,4 +1,10 @@
-package edu.uw.foodier
+// This file was created by Jade D'Souza for the Detail Page
+// to call the Yelp API to find similar restaurants for the
+// given food item, in Washington specifically.
+// This is our adapter for the list of businesses for our
+// recycler view.
+// We used open source code by Yelp in order to navigate their API.
+package edu.uw.foodier.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +14,7 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import edu.uw.foodier.R
 import edu.uw.foodier.model.Business
 
 class BusinessSearchAdapter(
