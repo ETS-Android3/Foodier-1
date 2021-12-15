@@ -36,8 +36,6 @@
         android:paddingLeft = "5dp"
         android:layout_below="@+id/restaurant_name" />
 
-
-
     <ImageView
         android:id="@+id/img"
         android:layout_width="200dp"
@@ -55,6 +53,28 @@
             android:padding="5dp"
             android:text="to homepage"
             android:layout_margin="10dp"
-            android:layout_below="@+id/img" />
+            android:layout_below="@+id/address" />
 
+
+    <TextView
+        android:id="@+id/hiWorld"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:text="greetin"
+        android:layout_below="@+id/img" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding ="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_below="@+id/hiWorld"
+        tools:text="Hello World" />
 </RelativeLayout>
