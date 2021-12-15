@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,13 +18,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import edu.uw.foodier.adapter.BusinessSearchAdapter
 import edu.uw.foodier.model.BusinessRepo
-import kotlinx.android.synthetic.main.detail_page.*
 import kotlinx.android.synthetic.main.detail_page.view.*
 
 class detailPage : Fragment() {
     private lateinit var selectedFood: FoodItemType
     private var businessRepo: BusinessRepo = BusinessRepo.instance()
 
+    // on create allows our fragment to be navigated to
+    // after clicking the card. Additionally, we are
+    // storing the food item object passed to the class in a global variable
+    // Global variable will be used to display further details. Item name
+    // reference from the FoodItem is used as a query term for our API search
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,6 +42,10 @@ class detailPage : Fragment() {
         }
     }
 
+    // creates our view - displays restaurant name, address,
+    // image of restaurant through Glide, searches API with food item name,
+    // populates recycler view with results from API, and allows navigation
+    // into bookmark page
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,8 +60,6 @@ class detailPage : Fragment() {
         title.text = selectedFood.itemName
         address.text = selectedFood.address
         restaurant.text = selectedFood.restaurant
-        //pointView.text = "on god";
-        //pointView.setText("test")
         Glide.with(this).load(selectedFood.food_image).into(img)
 
         val recycler = rootView.findViewById<RecyclerView>(R.id.listView)
@@ -64,10 +69,9 @@ class detailPage : Fragment() {
                 val hasNoResults = (list?.total ?: 0) == 0
                 recycler.isGone = hasNoResults
                 if (hasNoResults) {
-                    //hiWorld.text = getString(R.string.empty_result, selectedFood.itemName)
+                    pointView.text = getString(R.string.empty_result, selectedFood.itemName)
                 }
                 else {
-                    //hiWorld.text = getString(R.string.result_found, selectedFood.itemName)
                     pointView.setText("Other Restaurants that serve " + selectedFood.itemName)
                     recycler.adapter = BusinessSearchAdapter(list.businesses)
                 }
@@ -76,11 +80,6 @@ class detailPage : Fragment() {
         rootView.detailButton.setOnClickListener {
             findNavController().navigate(R.id.action_details_to_bookmark)
         }
-        // might need this
-        //viewModel.movieData.observe(viewLifecycleOwner, movieObserver)
-        //        adapter = MovieAdapter(findNavController(), viewModel.movieData)
-
-
         return rootView
     }
 
