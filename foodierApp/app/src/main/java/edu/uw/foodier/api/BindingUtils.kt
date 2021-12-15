@@ -20,11 +20,11 @@ fun loadImage(view: SimpleDraweeView, url: String) {
 // make sure text view shows up for sim restos - i can work on this myself
 
 // LAUREN
-// GPS - Lauren
+// Needs to update gps on front end - Lauren
 // Clean up code - Lauren
 // Persisting the card after looking at the detail - lauren
 // fix landscape view - main - lauren
 
 // SHRUTI
 // recycler view - shruti does it herself
-// room db has data added to it
+// room db has data added to it - Shruti does it in Laurens file
