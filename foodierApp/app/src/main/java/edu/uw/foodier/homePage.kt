@@ -154,6 +154,7 @@ class homePage : Fragment(), CardStackListener {
             if (activityReference.get()?.dao?.getAllFoodItems()?.contains(food) == true) {
                return false
             } else {
+                //activityReference.get()?.dao?.deleteAllFoods()
                 activityReference.get()?.dao?.insert(food)
                 return true
             }
