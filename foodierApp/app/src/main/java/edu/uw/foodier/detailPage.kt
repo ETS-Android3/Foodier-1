@@ -60,7 +60,7 @@ class detailPage : Fragment() {
         title.text = selectedFood.itemName
         address.text = selectedFood.address
         restaurant.text = selectedFood.restaurant
-        Glide.with(this).load(selectedFood.food_image).into(img)
+        Glide.with(this).load(selectedFood.foodImage).into(img)
 
         val recycler = rootView.findViewById<RecyclerView>(R.id.listView)
         recycler.layoutManager = LinearLayoutManager(activity)

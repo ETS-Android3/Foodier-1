@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".detailPage">
+    tools:context=".detailPage"
+    android:weightSum="3">
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight = "1"
+        android:orientation="vertical"
+        app:layout_constraintHorizontal_weight="@+id/rightColumn"
+        android:layout_height="match_parent"
+        >
     <Button
         android:id="@+id/detailButton"
         android:layout_width="wrap_content"
@@ -50,17 +58,6 @@
         android:paddingLeft = "5dp"
         android:layout_below="@+id/restaurant_name" />
 
-    <TextView
-        android:id="@+id/hiWorld"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/img"
-        android:textSize="20sp"
-        android:layout_marginStart="300dp"
-        android:layout_alignTop="@+id/detailButton"
-        android:textStyle="bold"
-        android:layout_marginTop="5dp"
-        android:text="@string/other_restaurants_similar_food" />
 
     <ImageView
         android:id="@+id/img"
@@ -71,15 +68,28 @@
         android:contentDescription="@string/image_of_a_movie"
         android:gravity="center"
         android:text="@string/movie_image" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:id="@+id/rightColumn"
+        android:orientation="vertical"
+        android:layout_weight = "2"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/hiWorld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:text="@string/other_restaurants_similar_food" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
-        android:layout_alignTop="@+id/detailButton"
-        android:layout_marginStart="300dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_below="@+id/hiWorld"
         tools:text="Hello World" />
-</RelativeLayout>
+
+</LinearLayout>
+</LinearLayout>

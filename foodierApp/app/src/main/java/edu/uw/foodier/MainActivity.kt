@@ -1,5 +1,8 @@
 package edu.uw.foodier
-
+// This file is for the mainActivity created by Lauren Ng
+// and is where the app is initialized and getting the current
+// location of the user while also asking for permissions to get
+// their current location
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -16,15 +19,26 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
+
+import android.os.Looper
+import android.provider.Settings
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_main.*
 
+import edu.uw.foodier.viewmodels.homePageViewModel
 
 class MainActivity : AppCompatActivity() {
     var mFusedLocationClient: FusedLocationProviderClient? = null
+    private val model : homePageViewModel by viewModels()
     var pointView : TextView? = null
     private lateinit var dao: FoodItemDao
 
+    // on create sets the content view as activity main and also
+    // creates functionality for our floating action button to be
+    // clickable to go to the bookmark activity.
+    // also, we are setting up the app to get the current location of the user
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,42 +46,40 @@ class MainActivity : AppCompatActivity() {
         dao = FoodItemDatabase.getInstance(this).foodItemDao()
 
         button.setOnClickListener { view ->
-            // goes to second activity
-            val goToSecondActivity = Intent(this, BookmarkActivity::class.java)
-
+            val goToBookmarkActivity = Intent(this, BookmarkActivity::class.java)
             try {
-                startActivity(goToSecondActivity)
+                startActivity(goToBookmarkActivity)
             } catch (e: ActivityNotFoundException) {
-                Log.e("errorInMain", e.toString())
+                Log.e("MainActivity", e.toString())
             }
         }
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        // method to get the location
+        // method to get the locatiom
+        // pass fusedLocation into this function below
+        // better code wise. don't need it as a field
         getLastLocation();
     }
-    @SuppressLint("MissingPermission")
-    private fun getLastLocation() {
-        // check if permissions are given
-        if (checkPermissions()) {
 
+    // getting the latest location of the user and updating the model of we're able to get it
+    @SuppressLint("MissingPermission")
+    fun getLastLocation() {
+        if (checkPermissions()) {
             // check if location is enabled
             if (isLocationEnabled()) {
-
-                // getting last
-                // location from
-                // FusedLocationClient
-                // object
-                mFusedLocationClient!!.lastLocation.addOnCompleteListener { task ->
-                    val location = task.result
-                    if (location == null) {
-                        requestNewLocationData()
-                    } else {
-                        Log.d("Main Activity", location.latitude.toString())
-//                        pointView?.setText(location.latitude.toString() + " lat and " + location.longitude.toString())
+                if (mFusedLocationClient != null) {
+                    mFusedLocationClient!!.lastLocation.addOnCompleteListener { task ->
+                        val location = task.result
+                        if (location == null) {
+                            requestNewLocationData()
+                        } else {
+                            model.updateLocation(location)
+                        }
                     }
+                } else {
+                    Log.e("Mainactivty", "FusedLocation is null")
                 }
+
             } else {
                 Toast.makeText(this, "Please turn on" + " your location...", Toast.LENGTH_LONG)
                     .show()
@@ -81,6 +93,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // asking for new location data and suppressing the missing permission data once the user
+    // has allowed it once.
     @SuppressLint("MissingPermission")
     private fun requestNewLocationData() {
 
@@ -92,18 +106,16 @@ class MainActivity : AppCompatActivity() {
         mLocationRequest.setFastestInterval(0)
         mLocationRequest.setNumUpdates(1)
 
-        // setting LocationRequest
-        // on FusedLocationClient
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         mFusedLocationClient?.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
-
     }
 
+    // method to update location once we get the location result
     private val mLocationCallback: LocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation = locationResult.lastLocation
-            Log.d("MAIN ACTIVTY", mLastLocation.latitude.toString())
-//            pointView?.setText("Latitude: " + mLastLocation.latitude + "latitutude and " + mLastLocation.longitude)
+            model.updateLocation(mLastLocation)
+            Log.d("MAIN ACTIVITY", mLastLocation.latitude.toString())
         }
     }
 
@@ -116,11 +128,6 @@ class MainActivity : AppCompatActivity() {
             this,
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
-
-        // If we want background location
-        // on Android 10.0 and higher,
-        // use:
-        // ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
     // method to request for permissions
@@ -133,8 +140,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // method to check
-    // if location is enabled
+    // method to check if location is enabled
     private fun isLocationEnabled(): Boolean {
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
@@ -142,7 +148,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // If everything is alright then
+    // If everything is alright then we execute this function to get the latest location
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,

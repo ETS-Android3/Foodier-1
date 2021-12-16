@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey
 // bookmarked_food_items table in room database
 @Entity(tableName = "bookmarked_food_items")
 data class FoodItem(
+
     @PrimaryKey(autoGenerate = false)
     val food_name: String,
 
@@ -22,6 +23,9 @@ data class FoodItem(
     @ColumnInfo(name = "addressName")
     val address: String,
 
+    @ColumnInfo(name = "indexx")
+    var index: Int,
+
     @ColumnInfo(name = "timeDist")
-    var timeDistance: String = "0 minutes"
+    var timeDistance: String = "0 min"
 )

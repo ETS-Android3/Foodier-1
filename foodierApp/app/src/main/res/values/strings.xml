@@ -19,4 +19,7 @@
     <string name="restaurant_name">restaurant name</string>
     <string name="address">address</string>
     <string name="other_restaurants_similar_food">Other Restaurants Similar Food</string>
+    <string name="foodName">DEFAULT FOOD NAME</string>
+    <string name="restaurantName">Restaurant name</string>
+    <string name="imageDescription">Food item Description</string>
 </resources>
