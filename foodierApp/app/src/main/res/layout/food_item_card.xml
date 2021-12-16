@@ -36,7 +36,7 @@
 
                 <LinearLayout
                     android:id="@+id/leftTexts"
-                    android:layout_width="250dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -72,7 +72,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:fontFamily="casual"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     android:text="@string/distance_away"
                     android:textColor="@color/black"/>
