@@ -1,48 +1,34 @@
 package edu.uw.foodier
+// Created by Shruti Kompella to set up recycler view to
+// show all foods that have been bookmarked as a list,
+// toaster, Jade D'Souza helped with fixing database issues
+// caused by asynchronous calls that affected BookmarkAdapter.
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
-import androidx.room.*
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-//import edu.uw.foodier.databinding.BookmarkActivityBinding
 import kotlinx.android.synthetic.main.bookmark_activity.*
-import kotlinx.coroutines.launch
-import android.os.AsyncTask
-import android.provider.ContactsContract
-import java.lang.ref.WeakReference
 
-
+// Activity to show all foods that have been bookmarked as a list
 class BookmarkActivity : AppCompatActivity() {
-    //private lateinit var binding: BookmarkActivityBinding
     private lateinit var dao: FoodItemDao
     private lateinit var foods: List<FoodItem>
     private lateinit var bookmarkAdapter: BookmarkAdapter
 
+    // creates the view for bookmark page when it is first navigated to
+    // sets the text at top, and retrieves food item from room database that have been bookmarked
+    // and displays them in recyclerview
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //binding = BookmarkActivityBinding.inflate(layoutInflater)
-        //setContentView(binding.root)
         setContentView(R.layout.bookmark_activity)
-        displayList()
 
-//        val allElectionResults: MutableList<Int> = listOf<Int>(1,2,3,4,5).toMutableList()
-//
-//        bookmarkAdapter = BookmarkAdapter(allElectionResults)
+        bookmarkText.text = "Bookmarked Restaurants"
 
-    //    recycler_list.setHasFixedSize(true)
-    //    recycler_list.adapter = bookmarkAdapter
-  //      recycler_list.layoutManager = LinearLayoutManager(this)
-
-        bookmarkText.setText("Bookmarked Restaurants")
-
-        bookmarkToHomeBtn.setOnClickListener { view ->
+        bookmarkToHomeBtn.setOnClickListener {
             // goes to second activity
             val goToMainActivity = Intent(this, MainActivity::class.java)
 
@@ -54,8 +40,7 @@ class BookmarkActivity : AppCompatActivity() {
         }
 
         dao = FoodItemDatabase.getInstance(this).foodItemDao()
-        foods =  dao?.getAllFoodItems()
-        Log.e("foods", foods.get(0).food_name)
+        foods =  dao.getAllFoodItems()
 
         bookmarkAdapter = BookmarkAdapter(foods as MutableList<FoodItem>)
         bookmarkAdapter.itemClickListener = { foodDetails ->
@@ -66,48 +51,4 @@ class BookmarkActivity : AppCompatActivity() {
         recycler_list.adapter = bookmarkAdapter
         recycler_list.layoutManager = LinearLayoutManager(this)
     }
-
-    private fun displayList() {
-        // initialize database instance
-        //noteDatabase = NoteDatabase.getInstance(this@NoteListActivity)
-        // fetch list of notes in background thread
-        dao = FoodItemDatabase.getInstance(this).foodItemDao()
-        RetrieveTask(this).execute()
-    }
-
-//    private fun getFoods(): List<FoodItem> {
-//        var foodList: List<FoodItem> = dao.getAllFoodItems()
-////        lifecycleScope.launch {
-////            foodList = dao.getAllFoodItems()
-////        }
-//        return foodList
-//    }
-
-    private class RetrieveTask internal constructor(context: BookmarkActivity?) :
-        AsyncTask<Void?, Void?, List<FoodItem>?>() {
-        private val activityReference: WeakReference<BookmarkActivity>
-
-        override fun doInBackground(vararg p0: Void?): List<FoodItem>?  {
-            return if (activityReference.get() != null) activityReference.get()?.dao?.getAllFoodItems() else null
-        }
-
-        override fun onPostExecute(foods: List<FoodItem>?) {
-            if (foods != null && foods.size > 0) {
-                activityReference.get()?.foods = foods
-
-                // hides empty text view
-                //activityReference.get().textViewMsg.setVisibility(View.GONE)
-
-                // create and set the adapter on RecyclerView instance to display list
-                activityReference.get()?.bookmarkAdapter = BookmarkAdapter(foods.toMutableList())
-                activityReference.get()?.recycler_list?.adapter = activityReference.get()?.bookmarkAdapter
-            }
-        }
-
-        // only retain a weak reference to the activity
-        init {
-            activityReference = WeakReference(context)
-        }
-    }
-
 }

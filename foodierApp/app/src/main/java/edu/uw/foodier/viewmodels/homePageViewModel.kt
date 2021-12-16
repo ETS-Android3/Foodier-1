@@ -1,8 +1,6 @@
 package edu.uw.foodier.viewmodels
 // This file is for the homePage created by Lauren Ng
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import edu.uw.foodier.FoodItem
 import edu.uw.foodier.api.GoogleMapAPI
@@ -13,7 +11,7 @@ import retrofit2.Response
 
 class homePageViewModel : ViewModel(){
 
-    val LiveFoodItemList: List<FoodItem> = listOf<FoodItem>(FoodItem("bimbimbap","https://s3-media0.fl.yelpcdn.com/bphoto/glQT58yaz5suBRV1nvku6w/o.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
+    private val LiveFoodItemList: List<FoodItem> = listOf<FoodItem>(FoodItem("bimbimbap","https://s3-media0.fl.yelpcdn.com/bphoto/glQT58yaz5suBRV1nvku6w/o.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
         FoodItem("Seafood Pancake","https://st.depositphotos.com/2869437/3739/i/950/depositphotos_37392643-stock-photo-close-up-of-pug.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
         FoodItem("tteokbokki","https://solidstarts.com/wp-content/uploads/Potato-for-Babies-scaled.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
         FoodItem("Tofu soup","https://s3-media0.fl.yelpcdn.com/bphoto/NGG6-yJADbnJTBbvtwRczw/o.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105"),
@@ -44,7 +42,7 @@ class homePageViewModel : ViewModel(){
                 Log.d("VIEW MODEL", "fetched data is ${timeDistance}")
             }
             override fun onFailure(call: Call<DistanceMap>, t: Throwable) {
-                Log.d("viewModel", call.toString().toString())
+                Log.d("viewModel", call.toString())
                 t.message?.let { Log.e("viewModel", it) }
                 t.localizedMessage?.let{
                     Log.e("viewModel", it) }

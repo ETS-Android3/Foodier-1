@@ -13,21 +13,16 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_main.*
-
-import androidx.lifecycle.ViewModelProviders
 
 
 class MainActivity : AppCompatActivity() {
     var mFusedLocationClient: FusedLocationProviderClient? = null
     var pointView : TextView? = null
-//    private var fm : FoodItemViewModelDB ?= null
     private lateinit var dao: FoodItemDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +31,6 @@ class MainActivity : AppCompatActivity() {
 
         dao = FoodItemDatabase.getInstance(this).foodItemDao()
 
-//        fm = ViewModelProviders.of(this)[FoodItemViewModelDB::class.java]
-//
         button.setOnClickListener { view ->
             // goes to second activity
             val goToSecondActivity = Intent(this, BookmarkActivity::class.java)
@@ -48,7 +41,6 @@ class MainActivity : AppCompatActivity() {
                 Log.e("errorInMain", e.toString())
             }
         }
-//        pointView = findViewById(R.id.textviewActivityFirst);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
