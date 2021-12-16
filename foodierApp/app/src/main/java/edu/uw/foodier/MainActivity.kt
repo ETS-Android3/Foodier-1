@@ -41,6 +41,8 @@ import edu.uw.foodier.viewmodels.homePageViewModel
 class MainActivity : AppCompatActivity() {
     var mFusedLocationClient: FusedLocationProviderClient? = null
     private val model : homePageViewModel by viewModels()
+    var pointView : TextView? = null
+    private lateinit var dao: FoodItemDao
 
     // on create sets the content view as activity main and also
     // creates functionality for our floating action button to be
@@ -49,6 +51,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        dao = FoodItemDatabase.getInstance(this).foodItemDao()
 
         button.setOnClickListener { view ->
             val goToBookmarkActivity = Intent(this, BookmarkActivity::class.java)
