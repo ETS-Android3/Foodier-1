@@ -138,10 +138,6 @@ class homePage : Fragment(), CardStackListener {
 
     }
 
-    override fun onCardRewound() {
-
-    }
-
     private class InsertTask internal constructor(context: homePage?, food: FoodItem) :
         AsyncTask<Void?, Void?, Boolean>() {
         private var activityReference: WeakReference<homePage>

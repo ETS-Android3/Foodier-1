@@ -3,6 +3,8 @@ package edu.uw.foodier.viewmodels
 // view model for the homePage Model
 import android.location.Location
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import edu.uw.foodier.FoodItem
 import edu.uw.foodier.api.GoogleMapAPI

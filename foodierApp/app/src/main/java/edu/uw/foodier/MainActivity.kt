@@ -4,29 +4,38 @@ package edu.uw.foodier
 // location of the user while also asking for permissions to get
 // their current location
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.LocationManager
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
 import android.util.Log
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
+import kotlinx.android.synthetic.main.activity_main.*
 import androidx.core.app.ActivityCompat.requestPermissions
+
+import android.widget.Toast
+
+import com.google.android.gms.tasks.Task
+
+import androidx.annotation.NonNull
+
+import com.google.android.gms.tasks.OnCompleteListener
+
+import androidx.core.location.LocationManagerCompat.isLocationEnabled
+
+import android.annotation.SuppressLint
+import android.content.Context
+import androidx.core.location.LocationManagerCompat
+import android.content.pm.PackageManager
+import android.location.LocationManager
+
+import androidx.core.app.ActivityCompat
 
 import android.os.Looper
 import android.provider.Settings
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.location.*
-import kotlinx.android.synthetic.main.activity_main.*
-
 import edu.uw.foodier.viewmodels.homePageViewModel
 
 class MainActivity : AppCompatActivity() {
