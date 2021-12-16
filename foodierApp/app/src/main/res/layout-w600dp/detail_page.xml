@@ -19,12 +19,13 @@
         android:id="@+id/detailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:text="@string/to_homepage"
         android:backgroundTint="#FD008D"
         android:paddingTop="5dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,6 @@
         android:id="@+id/detailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/detailButton"
         android:textStyle="bold"
         android:textSize="20sp"
         android:padding="5dp"
@@ -46,8 +46,8 @@
         android:layout_height="wrap_content"
         android:text="@string/restaurant_name"
         android:textSize="15sp"
-        android:paddingLeft = "5dp"
-        android:layout_below="@+id/detailTitle" />
+        android:paddingStart = "5dp"
+        android:paddingEnd="5dp"/>
 
     <TextView
         android:id="@+id/address"
@@ -55,16 +55,15 @@
         android:layout_height="wrap_content"
         android:text="@string/address"
         android:textSize="15sp"
-        android:paddingLeft = "5dp"
-        android:layout_below="@+id/restaurant_name" />
+        android:paddingStart = "5dp"
+        android:paddingEnd="5dp"/>
 
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_below="@+id/address"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:contentDescription="@string/image_of_a_movie"
         android:gravity="center"
         android:text="@string/movie_image" />

@@ -13,10 +13,7 @@ import android.view.animation.LinearInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
-import com.facebook.drawee.backends.pipeline.Fresco
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
@@ -24,9 +21,7 @@ import com.yuyakaido.android.cardstackview.SwipeableMethod
 import edu.uw.foodier.databinding.HomePageBinding
 import edu.uw.foodier.viewmodels.homePageViewModel
 import kotlinx.android.synthetic.main.home_page.*
-import kotlinx.coroutines.launch
 import android.os.AsyncTask
-import androidx.core.content.ContentProviderCompat.requireContext
 import java.lang.ref.WeakReference
 
 
@@ -38,8 +33,6 @@ class homePage : Fragment(), CardStackListener {
     private lateinit var layoutManager: CardStackLayoutManager
     private lateinit var dataSet : List<FoodItem>
     private var swipedDirection = "right"
-
-    private var foodItemDb: FoodItemDatabase ?= null
     private lateinit var dao: FoodItemDao
 
 
@@ -70,7 +63,7 @@ class homePage : Fragment(), CardStackListener {
     // card to swipe, like tinder
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = FoodListAdapter(homePageModel)
-        createCardView();
+        createCardView()
     }
 
     // passes data to the adapter to display the cards, creates the layout for how the card

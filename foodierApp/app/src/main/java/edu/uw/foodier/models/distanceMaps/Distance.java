@@ -3,7 +3,6 @@ package edu.uw.foodier.models.distanceMaps;
 // Created by Lauren for the googleMapsAPI results
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
-import android.os.Parcelable.Creator;
 
 public class Distance implements Parcelable
 {

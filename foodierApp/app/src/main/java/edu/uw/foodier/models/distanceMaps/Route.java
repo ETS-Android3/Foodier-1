@@ -4,7 +4,6 @@ package edu.uw.foodier.models.distanceMaps;
 import java.util.List;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
-import android.os.Parcelable.Creator;
 
 public class Route implements Parcelable
 {

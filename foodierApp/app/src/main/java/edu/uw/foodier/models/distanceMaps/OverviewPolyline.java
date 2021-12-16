@@ -3,7 +3,6 @@ package edu.uw.foodier.models.distanceMaps;
 
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
-import android.os.Parcelable.Creator;
 import com.squareup.moshi.Json;
 
 public class OverviewPolyline implements Parcelable

@@ -12,36 +12,26 @@ import android.util.Log
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.core.app.ActivityCompat.requestPermissions
-
 import android.widget.Toast
-
 import com.google.android.gms.tasks.Task
-
 import androidx.annotation.NonNull
-
 import com.google.android.gms.tasks.OnCompleteListener
-
 import androidx.core.location.LocationManagerCompat.isLocationEnabled
-
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.core.location.LocationManagerCompat
 import android.content.pm.PackageManager
 import android.location.LocationManager
-
 import androidx.core.app.ActivityCompat
-
 import android.os.Looper
 import android.provider.Settings
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
 import com.google.android.gms.location.*
 import edu.uw.foodier.viewmodels.homePageViewModel
 
 class MainActivity : AppCompatActivity() {
     var mFusedLocationClient: FusedLocationProviderClient? = null
     private val model : homePageViewModel by viewModels()
-    var pointView : TextView? = null
     private lateinit var dao: FoodItemDao
 
     // on create sets the content view as activity main and also
@@ -63,11 +53,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         // method to get the locatiom
         // pass fusedLocation into this function below
         // better code wise. don't need it as a field
-        getLastLocation();
+        getLastLocation()
     }
 
     // getting the latest location of the user and updating the model of we're able to get it

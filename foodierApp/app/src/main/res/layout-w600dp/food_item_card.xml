@@ -23,8 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="5dp"
-                android:contentDescription="@string/imageDescription"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark"/>
+                android:contentDescription="@string/imageDescription"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

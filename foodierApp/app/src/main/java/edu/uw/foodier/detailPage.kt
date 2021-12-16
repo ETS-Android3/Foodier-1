@@ -55,7 +55,7 @@ class detailPage : Fragment() {
         val title: TextView = rootView.findViewById(R.id.detailTitle)
         val address : TextView = rootView.findViewById(R.id.address)
         val restaurant : TextView = rootView.findViewById(R.id.restaurant_name)
-        val pointView : TextView = rootView.findViewById(R.id.hiWorld);
+        val pointView : TextView = rootView.findViewById(R.id.hiWorld)
 
         title.text = selectedFood.itemName
         address.text = selectedFood.address

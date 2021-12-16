@@ -10,7 +10,7 @@
         android:id="@+id/foodNameInRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="its a food"
+        android:text="@string/its_a_food"
         android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
