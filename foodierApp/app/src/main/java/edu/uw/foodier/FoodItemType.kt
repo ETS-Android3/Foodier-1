@@ -1,5 +1,5 @@
 package edu.uw.foodier
-// Created by Lauren to have a parcelable object for the details page
+// Created by Lauren to have a parcelable FoodItem object for the details page
 import android.os.Parcel
 import android.os.Parcelable
 

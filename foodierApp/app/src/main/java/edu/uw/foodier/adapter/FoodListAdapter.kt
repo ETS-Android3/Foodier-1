@@ -1,4 +1,4 @@
-package edu.uw.foodier
+package edu.uw.foodier.adapter
 // This file is for the homePage created by Lauren Ng
 // specifically for the card functionality and populating it with content
 // creating navigation to pass the foodItem object to details
@@ -12,6 +12,10 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import edu.uw.foodier.Constants
+import edu.uw.foodier.FoodItem
+import edu.uw.foodier.FoodItemType
+import edu.uw.foodier.R
 import edu.uw.foodier.viewmodels.homePageViewModel
 
 class FoodListAdapter (private val mainViewModel: homePageViewModel): RecyclerView.Adapter<FoodListAdapter.ProfileViewHolder>() {

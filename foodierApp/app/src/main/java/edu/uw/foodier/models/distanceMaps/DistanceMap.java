@@ -17,6 +17,7 @@ public class DistanceMap implements Parcelable
     private String status;
     public final static Creator<DistanceMap> CREATOR = new Creator<DistanceMap>() {
 
+
         @SuppressWarnings({
             "unchecked"
         })
@@ -37,8 +38,31 @@ public class DistanceMap implements Parcelable
         this.status = ((String) in.readValue((String.class.getClassLoader())));
     }
 
+    public DistanceMap() {
+    }
+
+    public List<GeocodedWaypoint> getGeocodedWaypoints() {
+        return geocodedWaypoints;
+    }
+
+    public void setGeocodedWaypoints(List<GeocodedWaypoint> geocodedWaypoints) {
+        this.geocodedWaypoints = geocodedWaypoints;
+    }
+
     public List<Route> getRoutes() {
         return routes;
+    }
+
+    public void setRoutes(List<Route> routes) {
+        this.routes = routes;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

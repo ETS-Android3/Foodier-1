@@ -1,5 +1,5 @@
 package edu.uw.foodier
-// This file is for the mainActivity created by Lauren Ng
+// This file is for the mainActivity all created by Lauren Ng
 // and is where the app is initialized and getting the current
 // location of the user while also asking for permissions to get
 // their current location
@@ -55,8 +55,6 @@ class MainActivity : AppCompatActivity() {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         // method to get the locatiom
-        // pass fusedLocation into this function below
-        // better code wise. don't need it as a field
         getLastLocation()
     }
 
@@ -86,8 +84,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         } else {
-            // if permissions aren't available,
-            // request for permissions
+            // if permissions aren't available, request for permissions
             requestPermissions()
         }
     }
@@ -114,7 +111,6 @@ class MainActivity : AppCompatActivity() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation = locationResult.lastLocation
             model.updateLocation(mLastLocation)
-            Log.d("MAIN ACTIVITY", mLastLocation.latitude.toString())
         }
     }
 
@@ -155,12 +151,13 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 44) {
-            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation()
             }
         }
     }
 
+    // when the app resumes, check permission and get latest location
     override fun onResume() {
         super.onResume()
         if (checkPermissions()) {

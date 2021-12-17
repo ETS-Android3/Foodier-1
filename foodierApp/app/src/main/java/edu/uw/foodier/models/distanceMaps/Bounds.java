@@ -14,6 +14,7 @@ public class Bounds implements Parcelable
     private Southwest southwest;
     public final static Creator<Bounds> CREATOR = new Creator<Bounds>() {
 
+
         @SuppressWarnings({
             "unchecked"
         })
@@ -24,12 +25,32 @@ public class Bounds implements Parcelable
         public Bounds[] newArray(int size) {
             return (new Bounds[size]);
         }
+
     }
     ;
 
     protected Bounds(android.os.Parcel in) {
         this.northeast = ((Northeast) in.readValue((Northeast.class.getClassLoader())));
         this.southwest = ((Southwest) in.readValue((Southwest.class.getClassLoader())));
+    }
+
+    public Bounds() {
+    }
+
+    public Northeast getNortheast() {
+        return northeast;
+    }
+
+    public void setNortheast(Northeast northeast) {
+        this.northeast = northeast;
+    }
+
+    public Southwest getSouthwest() {
+        return southwest;
+    }
+
+    public void setSouthwest(Southwest southwest) {
+        this.southwest = southwest;
     }
 
     @Override

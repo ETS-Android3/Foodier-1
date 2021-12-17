@@ -22,6 +22,7 @@ import edu.uw.foodier.databinding.HomePageBinding
 import edu.uw.foodier.viewmodels.homePageViewModel
 import kotlinx.android.synthetic.main.home_page.*
 import android.os.AsyncTask
+import edu.uw.foodier.adapter.FoodListAdapter
 import java.lang.ref.WeakReference
 
 
@@ -35,7 +36,6 @@ class homePage : Fragment(), CardStackListener {
     private var swipedDirection = "right"
     private lateinit var dao: FoodItemDao
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,13 +43,7 @@ class homePage : Fragment(), CardStackListener {
         dao = FoodItemDatabase.getInstance(requireContext()).foodItemDao()
     }
 
-//    private fun insertFood(food: FoodItem) {
-//        lifecycleScope.launch {
-//            dao.insert(food)
-//        }
-//    }
-
-    // when the view is created, I will be binding the current home page to the home activity
+    // when the view is created, this will be binding the current home page to the home activity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,14 +54,14 @@ class homePage : Fragment(), CardStackListener {
     }
 
     // when the view is created, we will add the card view logic and populate the page to have
-    // card to swipe, like tinder
+    // card to swipe, like tinder - Lauren
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = FoodListAdapter(homePageModel)
         createCardView()
     }
 
     // passes data to the adapter to display the cards, creates the layout for how the card
-    // will be displayed and creates the scaffolding for actions and animations
+    // will be displayed and creates the scaffolding for actions and animations - Lauren
     private fun createCardView() {
         dataSet = homePageModel.getFoodItems()
         adapter.updateData(dataSet)
@@ -92,7 +86,7 @@ class homePage : Fragment(), CardStackListener {
     }
 
     // when the card is disappeared, we will either add to the room database, if the user swiped
-    // right or do nothing if they swiped left
+    // right or do nothing if they swiped left - Lauren + Shruti
     override fun onCardDisappeared(view: View?, position: Int) {
         if (swipedDirection == "right") {
             Log.d("HOMEPAGE", "The number is $position and values include ${dataSet[position].food_name}")
@@ -103,7 +97,7 @@ class homePage : Fragment(), CardStackListener {
         }
     }
 
-    // identifies which direction the card was swiped
+    // identifies which direction the card was swiped - Lauren
     override fun onCardSwiped(direction: Direction?) {
         if (direction == Direction.Left) {  // dislike
             swipedDirection = "left"
@@ -114,6 +108,7 @@ class homePage : Fragment(), CardStackListener {
 
     // the following functions are helper functions for the card view. They aren't necessary for
     // the functionality in the current project. But the app doesn't run when they aren't implemented
+    // created by Lauren
     override fun onCardDragging(direction: Direction?, ratio: Float) {
 //        TODO("Not yet implemented")
     }
@@ -157,13 +152,6 @@ class homePage : Fragment(), CardStackListener {
             activityReference.get()?.dao?.insert(food)
             return true
         }
-
-//        // onPostExecute runs on main thread
-//        override fun onPostExecute(bool: Boolean) {
-//            if (bool) {
-//                activityReference.get().setResult(note, 1)
-//            }
-//        }
 
         // only retain a weak reference to the activity
         init {

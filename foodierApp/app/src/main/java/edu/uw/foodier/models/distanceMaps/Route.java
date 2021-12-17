@@ -25,6 +25,7 @@ public class Route implements Parcelable
     private List<Object> waypointOrder = null;
     public final static Creator<Route> CREATOR = new Creator<Route>() {
 
+
         @SuppressWarnings({
             "unchecked"
         })
@@ -47,6 +48,65 @@ public class Route implements Parcelable
         this.summary = ((String) in.readValue((String.class.getClassLoader())));
         in.readList(this.warnings, (java.lang.Object.class.getClassLoader()));
         in.readList(this.waypointOrder, (java.lang.Object.class.getClassLoader()));
+    }
+
+    public Route() {
+    }
+
+    public Bounds getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(Bounds bounds) {
+        this.bounds = bounds;
+    }
+
+    public String getCopyrights() {
+        return copyrights;
+    }
+
+    public void setCopyrights(String copyrights) {
+        this.copyrights = copyrights;
+    }
+
+    public List<Leg> getLegs() {
+        return legs;
+    }
+
+    public void setLegs(List<Leg> legs) {
+        this.legs = legs;
+    }
+
+    public OverviewPolyline getOverviewPolyline() {
+        return overviewPolyline;
+    }
+
+    public void setOverviewPolyline(OverviewPolyline overviewPolyline) {
+        this.overviewPolyline = overviewPolyline;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public List<Object> getWarnings() {
+        return warnings;
+    }
+
+    public void setWarnings(List<Object> warnings) {
+        this.warnings = warnings;
+    }
+
+    public List<Object> getWaypointOrder() {
+        return waypointOrder;
+    }
+
+    public void setWaypointOrder(List<Object> waypointOrder) {
+        this.waypointOrder = waypointOrder;
     }
 
     @Override

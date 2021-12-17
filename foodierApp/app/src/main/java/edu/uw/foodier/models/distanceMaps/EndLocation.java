@@ -34,6 +34,25 @@ public class EndLocation implements Parcelable
         this.lng = ((Double) in.readValue((Double.class.getClassLoader())));
     }
 
+    public EndLocation() {
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

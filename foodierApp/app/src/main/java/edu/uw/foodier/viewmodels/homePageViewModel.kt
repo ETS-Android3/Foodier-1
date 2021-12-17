@@ -21,7 +21,7 @@ class homePageViewModel : ViewModel() {
         FoodItem("Tofu soup","https://s3-media0.fl.yelpcdn.com/bphoto/NGG6-yJADbnJTBbvtwRczw/o.jpg","Korean Tofu House","4142 Brooklyn Ave NE Seattle, WA 98105",3),
         FoodItem("Lamb Gyro","https://s3-media0.fl.yelpcdn.com/bphoto/8RDWMYK3OfBH7B4NNgte5w/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105",4),
         FoodItem("Aladdin Fries","https://s3-media0.fl.yelpcdn.com/bphoto/W4ZUm8JTnEVjUortFkHSHA/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105",5),
-       /* FoodItem("Gyro Platter Special","https://s3-media0.fl.yelpcdn.com/bphoto/1STJHfvgQjHBzCYn6_Ay0A/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105",6),
+        FoodItem("Gyro Platter Special","https://s3-media0.fl.yelpcdn.com/bphoto/1STJHfvgQjHBzCYn6_Ay0A/o.jpg","Aladdin Gyro-Cery","4139 University Way NE Seattle, WA 98105",6),
         FoodItem("Spicy Pork Bulgogi Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/y7gK7T0-PCaQjzqa1KFXjA/o.jpg","Bugis","4142 Brooklyn Ave NE Seattle, WA 98105",7),
         FoodItem("Mapo Tofu Bowl","https://s3-media0.fl.yelpcdn.com/bphoto/WZc19NPRdmbKVBIzPbg7KA/o.jpg","Bugis","4142 Brooklyn Ave NE Seattle, WA 98105",8),
         FoodItem("Chicken and Waffles","https://s3-media0.fl.yelpcdn.com/bphoto/r6z7hR8ax3hMO6Xid1oQ1A/o.jpg","Bugis","4142 Brooklyn Ave NE Seattle, WA 98105",9),
@@ -38,7 +38,7 @@ class homePageViewModel : ViewModel() {
         FoodItem("Tofu Banh Mi","https://s3-media0.fl.yelpcdn.com/bphoto/EQRv1p_Yrp-VeDshi0RJoA/o.jpg","Sizzle & Crunch","1313 NE 42nd St Seattle, WA 98105",20),
         FoodItem("Beef Banh Mi","https://s3-media0.fl.yelpcdn.com/bphoto/1SgJatk5KTJznL37rmY6-A/o.jpg","Sizzle & Crunch","1313 NE 42nd St Seattle, WA 98105",21),
         FoodItem("Cold Noodles","https://s3-media0.fl.yelpcdn.com/bphoto/U5IRHBX_G3NwLjHunSEcwA/o.jpg","Xian Noodle","5259 University Way NE Seattle, WA 98105",22),
-    */)
+    )
 
 
     // passing the list of static food items

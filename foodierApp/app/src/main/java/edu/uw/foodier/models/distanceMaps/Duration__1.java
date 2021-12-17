@@ -34,12 +34,23 @@ public class Duration__1 implements Parcelable
         this.value = ((Integer) in.readValue((Integer.class.getClassLoader())));
     }
 
+    public Duration__1() {
+    }
+
     public String getText() {
         return text;
     }
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
     }
 
     @Override
